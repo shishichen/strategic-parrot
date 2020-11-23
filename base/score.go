@@ -7,7 +7,6 @@ import (
 
 // GetScore returns an arbitrary but ordered number representing the value of the best poker hand,
 // out of 5, 6, or 7 cards
-// The input may be mutated
 func GetScore(cards []Card) (uint64, error) {
 	if len(cards) < 5 || len(cards) > 7 {
 		return 0, fmt.Errorf("only a set of 5, 6, or 7 cards can be scored")
@@ -41,11 +40,13 @@ const (
 // Returns the best ranking and the ranks of the 5 significant cards, in order from most to least
 func getRanking(cards []Card) (ranking, []Rank) {
 	significant := make([]Rank, 5)
-	// Sort from largest to smallest
-	sort.Slice(cards, func(x, y int) bool { return cards[x] > cards[y] })
+
+	sorted := make([]Card, len(cards))
+	copy(sorted, cards)
+	sort.Slice(sorted, func(x, y int) bool { return sorted[x] > sorted[y] })
 
 	// First, check for a straight flush
-	haveFlush, flushCards := hasFlush(cards)
+	haveFlush, flushCards := hasFlush(sorted)
 	if haveFlush {
 		haveStraight, straightFlushCards := hasStraight(flushCards)
 		if haveStraight {
@@ -57,7 +58,7 @@ func getRanking(cards []Card) (ranking, []Rank) {
 	}
 
 	// Next, four of a kind
-	m, n, mRank, nRank := hasSomeOfAKind(cards)
+	m, n, mRank, nRank := hasSomeOfAKind(sorted)
 	if m == 4 {
 		for i := 0; i < 4; i++ {
 			significant[i] = mRank
@@ -86,7 +87,7 @@ func getRanking(cards []Card) (ranking, []Rank) {
 	}
 
 	// Next, straight
-	haveStraight, straightCards := hasStraight(cards)
+	haveStraight, straightCards := hasStraight(sorted)
 	if haveStraight {
 		for i := 0; i < 5; i++ {
 			significant[i] = straightCards[i].GetRank()
@@ -100,7 +101,7 @@ func getRanking(cards []Card) (ranking, []Rank) {
 			significant[i] = mRank
 		}
 		significant[3] = nRank
-		for _, c := range cards {
+		for _, c := range sorted {
 			r := c.GetRank()
 			if r != mRank && r != nRank {
 				significant[4] = r
@@ -118,7 +119,7 @@ func getRanking(cards []Card) (ranking, []Rank) {
 		for i := 2; i < 4; i++ {
 			significant[i] = nRank
 		}
-		for _, c := range cards {
+		for _, c := range sorted {
 			r := c.GetRank()
 			if r != mRank && r != nRank {
 				significant[4] = r
@@ -135,7 +136,7 @@ func getRanking(cards []Card) (ranking, []Rank) {
 		}
 		significant[2] = nRank
 		i := 3
-		for _, c := range cards {
+		for _, c := range sorted {
 			r := c.GetRank()
 			if r != mRank && r != nRank {
 				significant[i] = r
@@ -150,7 +151,7 @@ func getRanking(cards []Card) (ranking, []Rank) {
 
 	// Finally, if we have nothing else, we just have a high card
 	for i := 0; i < 5; i++ {
-		significant[i] = cards[i].GetRank()
+		significant[i] = sorted[i].GetRank()
 	}
 	return highCard, significant
 }

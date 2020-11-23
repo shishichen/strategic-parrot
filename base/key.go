@@ -6,17 +6,19 @@ import (
 )
 
 // GetKey returns an arbitrary key representing the unordered set of up to 8 cards
-// The input may be mutated
 func GetKey(cards []Card) (uint64, error) {
 	if len(cards) > 8 {
 		return 0, fmt.Errorf("key can only be generated for up to 8 cards")
 	}
 
+	sorted := make([]Card, len(cards))
+	copy(sorted, cards)
+	sort.Slice(sorted, func(x, y int) bool { return sorted[x] < sorted[y] })
+
 	// Each 8 bits is a card, from lowest order bits to highest, from smallest card to largest
-	sort.Slice(cards, func(x, y int) bool { return cards[x] < cards[y] })
 	result := uint64(0)
-	for i := 0; i < len(cards); i++ {
-		result |= (uint64(cards[i]) << (i * 8))
+	for i := 0; i < len(sorted); i++ {
+		result |= (uint64(sorted[i]) << (i * 8))
 	}
 	return result, nil
 }
