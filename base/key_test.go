@@ -11,14 +11,14 @@ func TestKey(t *testing.T) {
 	tests := []struct {
 		name  string
 		cards []base.Card
-		want  uint64
+		want  base.Key
 	}{
-		{"empty", []base.Card{}, 0x0},
-		{"set of 2", []base.Card{base.NewCard(base.Ace, base.Heart), base.NewCard(base.King, base.Heart)}, 0xD3C3},
-		{"ignores order", []base.Card{base.NewCard(base.King, base.Heart), base.NewCard(base.Ace, base.Heart)}, 0xD3C3},
+		{"empty", []base.Card{}, base.Key(0x0)},
+		{"set of 2", []base.Card{base.NewCard(base.Ace, base.Heart), base.NewCard(base.King, base.Heart)}, base.Key(0xD3C3)},
+		{"ignores order", []base.Card{base.NewCard(base.King, base.Heart), base.NewCard(base.Ace, base.Heart)}, base.Key(0xD3C3)},
 		{"set of 5", []base.Card{base.NewCard(base.Ten, base.Heart), base.NewCard(base.Jack, base.Heart),
 			base.NewCard(base.Queen, base.Heart), base.NewCard(base.King, base.Heart),
-			base.NewCard(base.Ace, base.Heart)}, 0xD3C3B3A393},
+			base.NewCard(base.Ace, base.Heart)}, base.Key(0xD3C3B3A393)},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

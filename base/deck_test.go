@@ -19,6 +19,7 @@ func TestNext(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			deck := base.NewDeck()
+			deck.Shuffle()
 			seen := make(map[base.Card]bool)
 			for i := 0; i < tt.dealt; i++ {
 				if c, err := deck.Next(); err != nil || seen[c] {
@@ -53,6 +54,7 @@ func TestRemove(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			deck := base.NewDeck()
+			deck.Shuffle()
 			deck.Remove(tt.remove)
 			if len(deck.GetCards()) != tt.remaining {
 				t.Errorf("remaining deck length = %v, want length %v", len(deck.GetCards()), tt.remaining)

@@ -5,9 +5,12 @@ import (
 	"sort"
 )
 
+// Score is a hand's score
+type Score uint64
+
 // GetScore returns an arbitrary but ordered number representing the value of the best poker hand,
 // out of 5, 6, or 7 cards
-func GetScore(cards []Card) (uint64, error) {
+func GetScore(cards []Card) (Score, error) {
 	if len(cards) < 5 || len(cards) > 7 {
 		return 0, fmt.Errorf("only a set of 5, 6, or 7 cards can be scored")
 	}
@@ -20,7 +23,7 @@ func GetScore(cards []Card) (uint64, error) {
 	for i := 0; i < 5; i++ {
 		score |= (uint64(significant[i]) << (16 - i*4))
 	}
-	return score, nil
+	return Score(score), nil
 }
 
 type ranking int

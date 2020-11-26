@@ -71,6 +71,7 @@ func TestCombinations(t *testing.T) {
 
 func BenchmarkCombinations2(b *testing.B) {
 	deck := base.NewDeck()
+	deck.Shuffle()
 	for i := 0; i < b.N; i++ {
 		base.GetCombinations(deck.GetCards(), 2)
 	}
@@ -78,6 +79,7 @@ func BenchmarkCombinations2(b *testing.B) {
 
 func BenchmarkCombinations5(b *testing.B) {
 	deck := base.NewDeck()
+	deck.Shuffle()
 	for i := 0; i < b.N; i++ {
 		base.GetCombinations(deck.GetCards(), 5)
 	}
@@ -85,6 +87,7 @@ func BenchmarkCombinations5(b *testing.B) {
 
 func BenchmarkCombinations7(b *testing.B) {
 	deck := base.NewDeck()
+	deck.Shuffle()
 	for i := 0; i < b.N; i++ {
 		base.GetCombinations(deck.GetCards(), 7)
 	}

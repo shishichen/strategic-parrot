@@ -11,7 +11,7 @@ type Deck struct {
 	cards []Card
 }
 
-// NewDeck returns a new shuffled deck
+// NewDeck returns a new unshuffled deck
 func NewDeck() *Deck {
 	deck := &Deck{}
 	for _, rank := range []Rank{Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace} {
@@ -19,9 +19,13 @@ func NewDeck() *Deck {
 			deck.cards = append(deck.cards, NewCard(rank, suit))
 		}
 	}
-	rand.Seed(time.Now().UnixNano())
-	rand.Shuffle(len(deck.cards), func(x, y int) { deck.cards[x], deck.cards[y] = deck.cards[y], deck.cards[x] })
 	return deck
+}
+
+// Shuffle shuffles the deck
+func (d *Deck) Shuffle() {
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(d.cards), func(x, y int) { d.cards[x], d.cards[y] = d.cards[y], d.cards[x] })
 }
 
 // GetCards returns the remaining cards in the deck
