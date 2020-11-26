@@ -16,7 +16,7 @@ func TestNewCard(t *testing.T) {
 		{"(4,C)", base.Four, base.Club, base.Card(0x31)},
 		{"(7,D)", base.Seven, base.Diamond, base.Card(0x62)},
 		{"(2,H)", base.Two, base.Heart, base.Card(0x13)},
-		{"(Q,S)", base.Queen, base.Spade, base.Card(0xB4)},
+		{"(Q,S)", base.Queen, base.Spade, base.Card(0xb4)},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -37,7 +37,7 @@ func TestString(t *testing.T) {
 		{"(7,D)", base.NewCard(base.Seven, base.Diamond), "(7,D)"},
 		{"(2,H)", base.NewCard(base.Two, base.Heart), "(2,H)"},
 		{"(Q,S)", base.NewCard(base.Queen, base.Spade), "(Q,S)"},
-		{"invalid", base.Card(0xFF), "(invalid)"},
+		{"invalid", base.Card(0xff), "(invalid)"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

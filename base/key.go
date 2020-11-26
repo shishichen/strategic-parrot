@@ -30,7 +30,7 @@ func GetKey(cards []Card) (Key, error) {
 func ParseKey(key Key) []Card {
 	result := []Card{}
 	for i := 0; i < 8; i++ {
-		c := (key >> (i * 8)) & 0xFF
+		c := (key >> (i * 8)) & 0xff
 		if c == 0 {
 			break
 		}

@@ -66,7 +66,7 @@ func (c Card) GetRank() Rank {
 
 // GetSuit returns the card's suit
 func (c Card) GetSuit() Suit {
-	return Suit(c & 0xF)
+	return Suit(c & 0xf)
 }
 
 func (c Card) String() string {

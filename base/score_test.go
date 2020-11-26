@@ -17,19 +17,19 @@ func TestScore(t *testing.T) {
 			[]base.Card{base.NewCard(base.Ten, base.Diamond), base.NewCard(base.Ace, base.Diamond),
 				base.NewCard(base.Queen, base.Diamond), base.NewCard(base.King, base.Diamond),
 				base.NewCard(base.Jack, base.Diamond)},
-			base.Score(0x9DCBA9)},
+			base.Score(0x9dcba9)},
 		{"straight flush - (A,D) (Q,S) (J,D) (T,D) (9,D) (8,D) (7,D)",
 			[]base.Card{base.NewCard(base.Seven, base.Diamond), base.NewCard(base.Ace, base.Diamond),
 				base.NewCard(base.Eight, base.Diamond), base.NewCard(base.Ten, base.Diamond),
 				base.NewCard(base.Ace, base.Spade), base.NewCard(base.Jack, base.Diamond),
 				base.NewCard(base.Nine, base.Diamond)},
-			base.Score(0x9A9876)},
+			base.Score(0x9a9876)},
 		{"four of a kind - (A,S) (A,C) (A,H) (A,D) (K,C) (Q,H) (Q,D)",
 			[]base.Card{base.NewCard(base.Ace, base.Spade), base.NewCard(base.Ace, base.Club),
 				base.NewCard(base.Ace, base.Heart), base.NewCard(base.Queen, base.Heart),
 				base.NewCard(base.Queen, base.Diamond), base.NewCard(base.King, base.Club),
 				base.NewCard(base.Ace, base.Diamond)},
-			base.Score(0x8DDDDC)},
+			base.Score(0x8ddddc)},
 		{"four of a kind - (8,H) (8,D) (2,S) (2,C) (2,H) (2,D)",
 			[]base.Card{base.NewCard(base.Two, base.Spade), base.NewCard(base.Eight, base.Heart),
 				base.NewCard(base.Two, base.Club), base.NewCard(base.Two, base.Heart),
@@ -39,7 +39,7 @@ func TestScore(t *testing.T) {
 			[]base.Card{base.NewCard(base.Two, base.Spade), base.NewCard(base.Two, base.Club),
 				base.NewCard(base.King, base.Heart), base.NewCard(base.King, base.Club),
 				base.NewCard(base.King, base.Diamond), base.NewCard(base.Two, base.Heart)},
-			base.Score(0x7CCC11)},
+			base.Score(0x7ccc11)},
 		{"full house - (K,C) (Q,H) (5,H) (5,D) (3,S) (3,C) (3,H)",
 			[]base.Card{base.NewCard(base.Three, base.Spade), base.NewCard(base.Three, base.Club),
 				base.NewCard(base.Five, base.Heart), base.NewCard(base.King, base.Club),
@@ -51,13 +51,13 @@ func TestScore(t *testing.T) {
 				base.NewCard(base.Five, base.Heart), base.NewCard(base.Jack, base.Club),
 				base.NewCard(base.Five, base.Diamond), base.NewCard(base.Three, base.Heart),
 				base.NewCard(base.Jack, base.Heart)},
-			base.Score(0x7222AA)},
+			base.Score(0x7222aa)},
 		{"flush - (K,S) (Q,S) (8,S) (7,S) (6,S) (5,S) (2,S)",
 			[]base.Card{base.NewCard(base.Seven, base.Spade), base.NewCard(base.Eight, base.Spade),
 				base.NewCard(base.Queen, base.Spade), base.NewCard(base.Two, base.Spade),
 				base.NewCard(base.Five, base.Spade), base.NewCard(base.King, base.Spade),
 				base.NewCard(base.Six, base.Spade)},
-			base.Score(0x6CB765)},
+			base.Score(0x6cb765)},
 		{"flush - (J,C) (T,D) (9,D) (8,D) (7,D) (6,S) (3,D)",
 			[]base.Card{base.NewCard(base.Seven, base.Diamond), base.NewCard(base.Three, base.Diamond),
 				base.NewCard(base.Eight, base.Diamond), base.NewCard(base.Ten, base.Diamond),
@@ -75,7 +75,7 @@ func TestScore(t *testing.T) {
 				base.NewCard(base.Two, base.Diamond), base.NewCard(base.Eight, base.Heart),
 				base.NewCard(base.Nine, base.Heart), base.NewCard(base.Five, base.Club),
 				base.NewCard(base.Four, base.Diamond)},
-			base.Score(0x54321D)},
+			base.Score(0x54321d)},
 		{"straight - (Q,C) (T,S) (9,C) (8,D) (7,D) (6,S) (3,H)",
 			[]base.Card{base.NewCard(base.Seven, base.Diamond), base.NewCard(base.Three, base.Heart),
 				base.NewCard(base.Eight, base.Diamond), base.NewCard(base.Ten, base.Spade),
@@ -86,30 +86,30 @@ func TestScore(t *testing.T) {
 			[]base.Card{base.NewCard(base.Jack, base.Spade), base.NewCard(base.Four, base.Club),
 				base.NewCard(base.Four, base.Heart), base.NewCard(base.Four, base.Diamond),
 				base.NewCard(base.Nine, base.Diamond)},
-			base.Score(0x4333A8)},
+			base.Score(0x4333a8)},
 		{"three of a kind - (J,S) (9,D) (9,C) (9,H) (4,D) (2,C)",
 			[]base.Card{base.NewCard(base.Two, base.Club), base.NewCard(base.Jack, base.Spade),
 				base.NewCard(base.Nine, base.Club), base.NewCard(base.Nine, base.Heart),
 				base.NewCard(base.Four, base.Diamond), base.NewCard(base.Nine, base.Diamond)},
-			base.Score(0x4888A3)},
+			base.Score(0x4888a3)},
 		{"two pair - (Q,S) (Q,H) (8,H) (8,D) (7,C) (4,C) (4,D)",
 			[]base.Card{base.NewCard(base.Queen, base.Spade), base.NewCard(base.Four, base.Club),
 				base.NewCard(base.Eight, base.Heart), base.NewCard(base.Seven, base.Club),
 				base.NewCard(base.Four, base.Diamond), base.NewCard(base.Queen, base.Heart),
 				base.NewCard(base.Eight, base.Diamond)},
-			base.Score(0x3BB776)},
+			base.Score(0x3bb776)},
 		{"pair - (K,C) (Q,D) (8,C) (8,H) (7,S) (6,D) (2,H)",
 			[]base.Card{base.NewCard(base.Two, base.Heart), base.NewCard(base.Seven, base.Spade),
 				base.NewCard(base.Eight, base.Club), base.NewCard(base.Queen, base.Diamond),
 				base.NewCard(base.Eight, base.Heart), base.NewCard(base.King, base.Club),
 				base.NewCard(base.Six, base.Diamond)},
-			base.Score(0x277CB6)},
+			base.Score(0x277cb6)},
 		{"high card - (K,C) (Q,D) (8,C) (7,S) (6,D) (5,H) (2,H)",
 			[]base.Card{base.NewCard(base.Seven, base.Spade), base.NewCard(base.Eight, base.Club),
 				base.NewCard(base.Queen, base.Diamond), base.NewCard(base.Two, base.Heart),
 				base.NewCard(base.Five, base.Heart), base.NewCard(base.King, base.Club),
 				base.NewCard(base.Six, base.Diamond)},
-			base.Score(0x1CB765)},
+			base.Score(0x1cb765)},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -122,12 +122,12 @@ func TestScore(t *testing.T) {
 
 func TestScoreDistribution(t *testing.T) {
 	tests := []struct {
-		name string
-		k    int
-		// TODO: test the number of distinct hands as well
-		want map[uint64]int
+		name     string
+		k        int
+		count    map[uint64]int // total number of hands by rank
+		distinct map[uint64]int // number of distinct hands by rank
 	}{
-		{"distribution of 5 cards", 5,
+		{"distributions of 5 card hands", 5,
 			map[uint64]int{
 				1: 1302540,
 				2: 1098240,
@@ -138,6 +138,17 @@ func TestScoreDistribution(t *testing.T) {
 				7: 3744,
 				8: 624,
 				9: 40,
+			},
+			map[uint64]int{
+				1: 1277,
+				2: 2860,
+				3: 858,
+				4: 858,
+				5: 10,
+				6: 1277,
+				7: 156,
+				8: 156,
+				9: 10,
 			}},
 	}
 	for _, tt := range tests {
@@ -145,14 +156,25 @@ func TestScoreDistribution(t *testing.T) {
 			deck := base.NewDeck()
 			deck.Shuffle()
 			combinations := base.GetCombinations(deck.GetCards(), tt.k)
-			counts := make(map[uint64]int)
+
+			count := make(map[uint64]int)
+			distinct := make(map[uint64]map[base.Score]bool)
+			for i := uint64(1); i <= 9; i++ {
+				distinct[i] = make(map[base.Score]bool)
+			}
 			for _, c := range combinations {
 				score, _ := base.GetScore(c)
 				ranking := uint64(score >> 20)
-				counts[ranking]++
+				count[ranking]++
+				distinct[ranking][score] = true
 			}
-			if !reflect.DeepEqual(counts, tt.want) {
-				t.Errorf("GetScore() distribution = %v, want %v", counts, tt.want)
+			if !reflect.DeepEqual(count, tt.count) {
+				t.Errorf("GetScore() count = %v, want %v", count, tt.count)
+			}
+			for k, v := range distinct {
+				if len(v) != tt.distinct[k] {
+					t.Errorf("GetScore() distinct for rank %v = %v, want %v", k, len(v), tt.distinct[k])
+				}
 			}
 		})
 	}
